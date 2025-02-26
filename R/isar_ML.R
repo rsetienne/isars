@@ -1,3 +1,8 @@
+#' Maximum Likelihood of isar models
+#' @inherit default_params_doc
+#' @return The maximum likelhood parameters and corresponding likelihood and AICc value.
+#' @author Rampal S. Etienne
+#' @export
 isar_ML <- function(f_isar,
                     initparsopt,
                     parsfix,

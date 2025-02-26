@@ -28,6 +28,12 @@
 #'   incorrect output due to parameter transformation.
 #' @param num_cycles The number of cycles the optimizer will go through.
 #'   Default is 1.
+#' @param f_isar Function for island species-area relationship
+#' @param area vector of values of areas for different islands
+#' @param obs_richness vector of values of observed richness on islands. Should
+#' be the same order as in area.
+#' @param trial_settings number of trials in optimization, and standard deviation
+#' of the normal distribution used to generate the trials (initial parameter sets)
 #' @return Nothing
 default_params_doc <- function(
     initparsopt,
@@ -38,7 +44,11 @@ default_params_doc <- function(
     maxiter,
     optimmethod,
     jitter,
-    num_cycles
+    num_cycles,
+    f_isar,
+    area,
+    obs_richness,
+    trial_settings
 ) {
   # Nothing
 }
