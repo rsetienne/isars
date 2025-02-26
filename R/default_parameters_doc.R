@@ -38,7 +38,7 @@ default_params_doc <- function(
     maxiter,
     optimmethod,
     jitter,
-    num_cycles,
+    num_cycles
 ) {
   # Nothing
 }

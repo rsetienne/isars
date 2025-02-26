@@ -1,5 +1,5 @@
 #' Information Criterion Weights
-#' @inherit default_parameters_doc
+#' @inherit default_params_doc
 #' @return The IC weights for a set of models for which loglikelihoods are provided.
 #' @author Rampal S. Etienne
 

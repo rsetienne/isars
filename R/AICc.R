@@ -1,5 +1,5 @@
 #' Corrected Akaike Information Criterion
-#' @inherit default_parameters_doc
+#' @inherit default_params_doc
 #' @return The AICc value
 #' @author Rampal S. Etienne
 

@@ -10,3 +10,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/rsetienne/isars
 BugReports: https://github.com/rsetienne/isars/issues
+RoxygenNote: 7.3.2
