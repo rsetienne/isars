@@ -4,8 +4,7 @@ Title: Fits Island Species-Area Relationships Using Maximum Likelihood
 Version: 0.1.0
 Author: Rampal S. Etienne
 Maintainer: Rampal S. Etienne <r.s.etienne@rug.nl>
-Description: Uses Maximum Likelihood to fit predefined or user-defined functions
-for Island Species-Area Relationships to data of richness and area.
+Description: Uses Maximum Likelihood to fit predefined or user-defined functions for Island Species-Area Relationships to data of richness and area.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
