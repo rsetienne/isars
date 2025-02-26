@@ -1,4 +1,9 @@
+#' Akaike Information Criterion
+#' @inherit default_parameters_doc
+#' @return The AIC value
+#' @author Rampal S. Etienne
+
 AIC <- function(LogLik,k){
-  aic <- (2 * k) - ( 2 * LogLik)
+  aic <- (2 * k) - (2 * LogLik)
   return(aic)
 }
