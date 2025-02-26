@@ -13,7 +13,11 @@ default_params_doc(
   maxiter,
   optimmethod,
   jitter,
-  num_cycles
+  num_cycles,
+  f_isar,
+  area,
+  obs_richness,
+  trial_settings
 )
 }
 \arguments{
@@ -44,6 +48,16 @@ incorrect output due to parameter transformation.}
 
 \item{num_cycles}{The number of cycles the optimizer will go through.
 Default is 1.}
+
+\item{f_isar}{Function for island species-area relationship}
+
+\item{area}{vector of values of areas for different islands}
+
+\item{obs_richness}{vector of values of observed richness on islands. Should
+be the same order as in area.}
+
+\item{trial_settings}{number of trials in optimization, and standard deviation
+of the normal distribution used to generate the trials (initial parameter sets)}
 
 \item{pars}{A numeric vector containing the model parameters:
 \itemize{
