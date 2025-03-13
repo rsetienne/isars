@@ -20,12 +20,6 @@ f_chapman <- function(area, pars) {
   return(S <- d * (1 - exp(-z * area)^c))
 }
 
-f_loga <- function(area, pars) {
-  c <- pars[1]
-  z <- pars[2]
-  return(S <- c + z * log(area))
-}
-
 f_epm1 <- function(area, pars) {
   c <- pars[1]
   d <- pars[2]
@@ -47,6 +41,13 @@ f_gompertz <- function(area, pars) {
   return(S <- d * exp(-exp(-z * (area - c))))
 }
 
+f_heleg <- function(area, pars) {
+  c <- pars[1]
+  f <- pars[2]
+  z <- pars[3]
+  return(S <- c/(f + area^(-z)))
+}
+
 f_koba <- function(area, pars) {
   c <- pars[1]
   z <- pars[2]
@@ -59,11 +60,10 @@ f_linear <- function(area, pars) {
   return(S <- c + z * area)
 }
 
-f_heleg <- function(area, pars) {
+f_loga <- function(area, pars) {
   c <- pars[1]
-  f <- pars[2]
-  z <- pars[3]
-  return(S <- c/(f + area^(-z)))
+  z <- pars[2]
+  return(S <- c + z * log(area))
 }
 
 f_monod <- function(area, pars) {
@@ -153,4 +153,12 @@ f_ContTwo <- function(area, pars) {
   return(S <- c_1 + (log(area) <= T_1) * z_1 * log(area) +
            (log(area) > T_1) * (log(area) <= T_2) * (z_1 * T_1 + z_2 * (log(area) - T_1)) +
            (log(area) > T_2) * (z_2 * (T_2 - T_1) + z_3 * (log(area) - T_2)))
+}
+
+f_ContOne2 <- function(area, pars) {
+  c_1 <- pars[1]
+  T <- pars[2]
+  z_1 <- pars[3]
+  return(S <- c_1 + (log(area) <= T) * z_1 * log(area) +
+           (log(area) > T) * z_1 * T)
 }
