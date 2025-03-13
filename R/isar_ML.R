@@ -11,7 +11,7 @@ isar_ML <- function(f_isar,
                     area,
                     obs_richness,
                     optimmethod = 'simplex',
-                    num_cycles = 1,
+                    num_cycles = 5,
                     tol = c(1E-6, 1E-6, 1E-6),
                     maxiter = 10000 * round((1.25)^length(idparsopt)),
                     trial_settings = c(n = 10, sd = 0.1)) {
@@ -19,27 +19,42 @@ isar_ML <- function(f_isar,
   ML <- -Inf
   for(i in 0:trial_settings[1]) {
     if(i > 0) {
-      initparsopt <- initparsopt * exp(rnorm(n = length(initparsopt), mean = 0,sd = trial_settings[2]))
+      initparsopt2 <- initparsopt * exp(rnorm(n = length(initparsopt), mean = 0,sd = trial_settings[2]))
       if(length(parsfix) > 0) {
-        parsfix <- parsfix * exp(rnorm(n = length(parsfix), mean = 0,sd = trial_settings[2]))
+        parsfix2 <- parsfix * exp(rnorm(n = length(parsfix), mean = 0,sd = trial_settings[2]))
       }
+    } else {
+      initparsopt2 <- initparsopt
+      parsfix2 <- parsfix
     }
-    trparsopt <- initparsopt/(1 + initparsopt)
-    trparsfix <- parsfix/(1 + parsfix)
-    trparsfix[parsfix == Inf] = 1
-    out2 <- DDD::optimizer(optimmethod = optimmethod,
-                           optimpars = optimpars,
-                           fun = isar_loglik_choosepar,
-                           trparsopt = trparsopt,
-                           trparsfix = trparsfix,
-                           idparsopt = idparsopt,
-                           idparsfix = idparsfix,
-                           area = area,
-                           obs_richness = obs_richness,
-                           num_cycles = num_cycles,
-                           f_isar = f_isar)
-    if(as.numeric(unlist(out2$fvalues)) > ML) {
-      out <- out2
+    trparsopt <- initparsopt2/(1 + initparsopt2)
+    trparsfix <- parsfix2/(1 + parsfix2)
+    trparsfix[parsfix2 == Inf] = 1
+    initloglik <- isar_loglik_choosepar(trparsopt = trparsopt,
+                                        trparsfix = trparsfix,
+                                        idparsopt = idparsopt,
+                                        idparsfix = idparsfix,
+                                        area = area,
+                                        obs_richness = obs_richness,
+                                        f_isar = f_isar)
+    if(initloglik > -Inf) {
+      out2 <- DDD::optimizer(optimmethod = optimmethod,
+                             optimpars = optimpars,
+                             fun = isar_loglik_choosepar,
+                             trparsopt = trparsopt,
+                             trparsfix = trparsfix,
+                             idparsopt = idparsopt,
+                             idparsfix = idparsfix,
+                             area = area,
+                             obs_richness = obs_richness,
+                             num_cycles = num_cycles,
+                             f_isar = f_isar)
+      if(as.numeric(unlist(out2$fvalues)) > ML) {
+        out <- out2
+      }
+    } else {
+      cat("The initial parameter values lead to -Inf for the loglikelihood. Try again with different initial values.\n")
+      out2 <- list(conv = 13)
     }
   }
   if(out$conv > 0)
