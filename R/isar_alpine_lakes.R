@@ -1,9 +1,9 @@
-isar_alpine_lakes <- function(num_init = 1, working_directory = getwd())
+isar_alpine_lakes <- function(num_init = 1, working_directory = getwd(), type_of_richness = 'D1.OC')
 {
   setwd(working_directory)
   isar_data <- read.csv(system.file("extdata", "lake_area_richness.csv", package = "isars"))
-  area <- isar_data[,4]
-  obs_richness <- isar_data[,3]
+  area <- isar_data[,"Surface_area_Km2"]
+  obs_richness <- isar_data[,type_of_richness]
   isar_initial_pars <- read.csv(system.file("extdata", "isar_initial_pars.csv", package = "isars"))
   isar_initial_pars21 <- c(c = 8.63, T1 = 4.1, z1 = 1.68, z2 = 5.08)
   isar_initial_pars22 <- c(c = 8.63, T1 = 4.1, T2 = 21.14, z1 = 1.68, z2 = 5.08, z3 = 5.08)
