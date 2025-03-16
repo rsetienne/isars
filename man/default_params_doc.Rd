@@ -17,7 +17,10 @@ default_params_doc(
   f_isar,
   area,
   obs_richness,
-  trial_settings
+  trial_settings,
+  num_init,
+  working_directory,
+  type_of_richness
 )
 }
 \arguments{
@@ -51,13 +54,19 @@ Default is 1.}
 
 \item{f_isar}{Function for island species-area relationship}
 
-\item{area}{vector of values of areas for different islands}
+\item{area}{Vector of values of areas for different islands}
 
 \item{obs_richness}{vector of values of observed richness on islands. Should
 be the same order as in area.}
 
-\item{trial_settings}{number of trials in optimization, and standard deviation
+\item{trial_settings}{Number of trials in optimization, and standard deviation
 of the normal distribution used to generate the trials (initial parameter sets)}
+
+\item{working_directory}{Name of working directory (as a string) where results
+result files will be put. Default is current working directory.}
+
+\item{type_of_richness}{Type of richness that is used. Choice is one of
+"D1.OC", "D2.OC_Int", "D3.OC_Ext", "D6.CC".}
 
 \item{pars}{A numeric vector containing the model parameters:
 \itemize{

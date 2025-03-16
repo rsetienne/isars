@@ -29,11 +29,15 @@
 #' @param num_cycles The number of cycles the optimizer will go through.
 #'   Default is 1.
 #' @param f_isar Function for island species-area relationship
-#' @param area vector of values of areas for different islands
+#' @param area Vector of values of areas for different islands
 #' @param obs_richness vector of values of observed richness on islands. Should
 #' be the same order as in area.
-#' @param trial_settings number of trials in optimization, and standard deviation
+#' @param trial_settings Number of trials in optimization, and standard deviation
 #' of the normal distribution used to generate the trials (initial parameter sets)
+#' @param working_directory Name of working directory (as a string) where results
+#' result files will be put. Default is current working directory.
+#' @param type_of_richness Type of richness that is used. Choice is one of
+#' "D1.OC", "D2.OC_Int", "D3.OC_Ext", "D6.CC".
 #' @return Nothing
 default_params_doc <- function(
     initparsopt,
@@ -48,7 +52,10 @@ default_params_doc <- function(
     f_isar,
     area,
     obs_richness,
-    trial_settings
+    trial_settings,
+    num_init,
+    working_directory,
+    type_of_richness
 ) {
   # Nothing
 }

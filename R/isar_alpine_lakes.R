@@ -1,4 +1,17 @@
-isar_alpine_lakes <- function(num_init = 1, working_directory = getwd(), type_of_richness = 'D1.OC')
+#' Estimation of parameters of isars for fish in   alpine lakes
+#' @name isar_alpine_lakes
+#' @title Estimates parameters of various island species-area relationships (isars)
+#' @description Uses maximum likelihood to estimate parameters of various species-
+#' area relationships that have been proposed in the literature. A pdf is
+#' produced that contains the plots of the 4 best-fitting isars. The data is also
+#' written to file. These files are put in the working directory that can be
+#' specified.
+#' @inheritParams default_params_doc
+#' @return The estimated parameters for each isar, the loglikelihood, the AICc
+#' and the AICc weights.
+#' @author Rampal S. Etienne
+#' @export
+isar_alpine_lakes <- function(type_of_richness = 'D1.OC', trial_settings = c(1, 0.1), working_directory = getwd())
 {
   setwd(working_directory)
   isar_data <- read.csv(system.file("extdata", "lake_area_richness.csv", package = "isars"))
@@ -101,7 +114,7 @@ isar_alpine_lakes <- function(num_init = 1, working_directory = getwd(), type_of
                             idparsfix = idparsfix,
                             area = area,
                             obs_richness = obs_richness,
-                            trial_settings = c(n = num_init, sd = 0.1))
+                            trial_settings = trial_settings)
   }
   fit_results <- as.data.frame(matrix(NA, nrow = length(isar_model_names), ncol = 10))
   names(fit_results) <- c("model", "c","d or T1","f or T2","z or z1","z2","z3","ML","AICc","AICcweight")
