@@ -38,6 +38,11 @@
 #' result files will be put. Default is current working directory.
 #' @param type_of_richness Type of richness that is used. Choice is one of
 #' "D1.OC", "D2.OC_Int", "D3.OC_Ext", "D6.CC".
+#' D1.OC: the diversity/richness from the Original Community
+#' D2.OC_Int: Original community richness plus introduced species
+#' D3.OC_Ext: Original community minus extinct species
+#' D6.CC: Contemporary Community, that is, OC plus Introduced species minus
+#' Extinct species.
 #' @return Nothing
 default_params_doc <- function(
     initparsopt,
