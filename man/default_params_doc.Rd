@@ -20,6 +20,7 @@ default_params_doc(
   trial_settings,
   num_init,
   working_directory,
+  verbose,
   type_of_richness
 )
 }
@@ -59,11 +60,14 @@ Default is 1.}
 \item{obs_richness}{vector of values of observed richness on islands. Should
 be the same order as in area.}
 
-\item{trial_settings}{Number of trials in optimization, and standard deviation
-of the normal distribution used to generate the trials (initial parameter sets)}
+\item{trial_settings}{Number of trials in optimization, seed of the pseudo-
+random number generator, and standard deviation of the normal distribution
+used to generate the trials (initial parameter sets).}
 
 \item{working_directory}{Name of working directory (as a string) where results
 result files will be put. Default is current working directory.}
+
+\item{verbose}{Determines the level of verbosity in the output.}
 
 \item{type_of_richness}{Type of richness that is used. Choice is one of
 "D1.OC", "D2.OC_Int", "D3.OC_Ext", "D6.CC".

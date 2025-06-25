@@ -17,6 +17,10 @@ isar_loglik <- function(f_isar,
                         area,
                         obs_richness) {
   exp_richness <- f_isar(area, pars)
-  loglik <- sum(dpois(x = obs_richness, lambda = exp_richness, log = TRUE))
+  if(any(exp_richness < 0)) {
+    loglik <- -Inf
+  } else {
+    loglik <- sum(dpois(x = obs_richness, lambda = exp_richness, log = TRUE))
+  }
   return(loglik)
 }

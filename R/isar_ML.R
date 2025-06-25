@@ -1,5 +1,6 @@
 #' Maximum Likelihood of isar model
-#' @name isar_M
+#' @name isar_ML
+#' @aliases isar_M
 #' @title Computes the loglikelihood of a parameter set of a specified island
 #' species-area relationships (isars) for a given data set of values of
 #' area and richness.
@@ -24,15 +25,18 @@ isar_ML <- function(f_isar,
                     num_cycles = 5,
                     tol = c(1E-6, 1E-6, 1E-6),
                     maxiter = 10000 * round((1.25)^length(idparsopt)),
-                    trial_settings = c(n = 10, sd = 0.1)) {
-  optimpars <- c(tol, maxiter)
+                    trial_settings = c(n = 10, seed = 42, sd = 0.1),
+                    verbose = TRUE) {
+  optimpars <- c(tol, maxiter, verbose)
   ML <- -Inf
   for(i in 0:trial_settings[1]) {
     if(i > 0) {
-      initparsopt2 <- initparsopt * exp(rnorm(n = length(initparsopt), mean = 0,sd = trial_settings[2]))
-      if(length(parsfix) > 0) {
-        parsfix2 <- parsfix * exp(rnorm(n = length(parsfix), mean = 0,sd = trial_settings[2]))
-      }
+      set.seed(trial_settings[2])
+      initparsopt2 <- initparsopt * exp(rnorm(n = length(initparsopt), mean = 0,sd = trial_settings[3]))
+      #if(length(parsfix) > 0) {
+      #  parsfix2 <- parsfix * exp(rnorm(n = length(parsfix), mean = 0,sd = trial_settings[2]))
+      #}
+      parsfix2 <- parsfix
     } else {
       initparsopt2 <- initparsopt
       parsfix2 <- parsfix

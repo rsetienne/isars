@@ -32,10 +32,12 @@
 #' @param area Vector of values of areas for different islands
 #' @param obs_richness vector of values of observed richness on islands. Should
 #' be the same order as in area.
-#' @param trial_settings Number of trials in optimization, and standard deviation
-#' of the normal distribution used to generate the trials (initial parameter sets)
+#' @param trial_settings Number of trials in optimization, seed of the pseudo-
+#' random number generator, and standard deviation of the normal distribution
+#' used to generate the trials (initial parameter sets).
 #' @param working_directory Name of working directory (as a string) where results
 #' result files will be put. Default is current working directory.
+#' @param verbose Determines the level of verbosity in the output.
 #' @param type_of_richness Type of richness that is used. Choice is one of
 #' "D1.OC", "D2.OC_Int", "D3.OC_Ext", "D6.CC".
 #' D1.OC: the diversity/richness from the Original Community
@@ -60,6 +62,7 @@ default_params_doc <- function(
     trial_settings,
     num_init,
     working_directory,
+    verbose,
     type_of_richness
 ) {
   # Nothing

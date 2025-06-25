@@ -6,8 +6,9 @@
 \usage{
 isar_alpine_lakes(
   type_of_richness = "D1.OC",
-  trial_settings = c(1, 0.1),
-  working_directory = getwd()
+  trial_settings = c(1, 42, 0.1),
+  working_directory = getwd(),
+  verbose = TRUE
 )
 }
 \arguments{
@@ -19,11 +20,14 @@ D3.OC_Ext: Original community minus extinct species
 D6.CC: Contemporary Community, that is, OC plus Introduced species minus
 Extinct species.}
 
-\item{trial_settings}{Number of trials in optimization, and standard deviation
-of the normal distribution used to generate the trials (initial parameter sets)}
+\item{trial_settings}{Number of trials in optimization, seed of the pseudo-
+random number generator, and standard deviation of the normal distribution
+used to generate the trials (initial parameter sets).}
 
 \item{working_directory}{Name of working directory (as a string) where results
 result files will be put. Default is current working directory.}
+
+\item{verbose}{Determines the level of verbosity in the output.}
 }
 \value{
 The estimated parameters for each isar, the loglikelihood, the AICc

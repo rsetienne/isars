@@ -11,7 +11,10 @@
 #' and the AICc weights.
 #' @author Rampal S. Etienne
 #' @export
-isar_alpine_lakes <- function(type_of_richness = 'D1.OC', trial_settings = c(1, 0.1), working_directory = getwd())
+isar_alpine_lakes <- function(type_of_richness = 'D1.OC',
+                              trial_settings = c(1, 42, 0.1),
+                              working_directory = getwd(),
+                              verbose = TRUE)
 {
   setwd(working_directory)
   isar_data <- read.csv(system.file("extdata", "lake_area_richness.csv", package = "isars"))
@@ -114,7 +117,8 @@ isar_alpine_lakes <- function(type_of_richness = 'D1.OC', trial_settings = c(1, 
                             idparsfix = idparsfix,
                             area = area,
                             obs_richness = obs_richness,
-                            trial_settings = trial_settings)
+                            trial_settings = trial_settings,
+                            verbose = verbose)
   }
   fit_results <- as.data.frame(matrix(NA, nrow = length(isar_model_names), ncol = 10))
   names(fit_results) <- c("model", "c","d or T1","f or T2","z or z1","z2","z3","ML","AICc","AICcweight")
